@@ -1,0 +1,28 @@
+#fh5co-aside {
+    width: 38.2%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    height: 100%;
+    z-index: 555;
+    background-color: #0bbbe6;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+@media screen and (max-width: 768px) {
+    #fh5co-aside {
+        width: 100%;
+        position: relative;
+        height: 200px;
+    }
+}
+#fh5co-aside #fh5co-logo {
+    padding-top: 20px;
+}
+#fh5co-aside #fh5co-logo a {
+    font-weight: 800;
+    letter-spacing: -3px;
+    color: #fff;
+}

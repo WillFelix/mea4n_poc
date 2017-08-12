@@ -6,18 +6,24 @@ import { RouterModule } from '@angular/router';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
-import { ChatService } from './chat.service';
 import { ChatComponent } from './chat/chat.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { CersComponent } from './cers/cers.component';
+
+import { ChatService } from './chat.service';
 
 const ROUTES = [
-  { path: '', redirectTo: 'chats', pathMatch: 'full' },
+  { path: '', redirectTo: 'app', pathMatch: 'full' },
+  { path: 'app', component: AppComponent },
   { path: 'chats', component: ChatComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChatComponent
+    ChatComponent,
+    SidebarComponent,
+    CersComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +33,7 @@ const ROUTES = [
   ],
   providers: [
     ChatService,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })

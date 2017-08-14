@@ -35,7 +35,9 @@ export class CersComponent implements OnInit {
 
 	getTotalBilling() {
 		this.cersService.getTotalBilling().then((res) => {
-			this.price = res['price'];
+			this.price = parseFloat(res['price'])
+									.toFixed(2)
+									.replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
 		}, (err) => {
 			console.log(err);
 		});

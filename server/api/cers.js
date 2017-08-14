@@ -23,7 +23,7 @@ module.exports = function(express, mysql, socket) {
 			select count(op.item_price) as amount
 			from orders o
 			inner join orders_products op on op.orders_id = o.id
-			where o.status in ('PAID', 'AVAILABLE', 'MANUALLY_RELEASED');
+			where o.status in ('PAID', 'AVAILABLE');
 		`;
 		mysql.query(query, function(err, rows, fields) {
 			if (err) throw err;

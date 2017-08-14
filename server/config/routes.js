@@ -1,9 +1,9 @@
 module.exports = function(express, app, mysql) {
-	var socket = require('./websocket')(app);
+	var socket = require('../websocket')(app);
 
 	app.use(cors);
 
-	var cers = require('./api/cers')(express, mysql, socket);
+	var cers = require('../api/cers')(express, mysql, socket);
 	app.use('/api/cers', cers);
 
 

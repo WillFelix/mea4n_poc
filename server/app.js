@@ -3,7 +3,7 @@ module.exports = function(port) {
 	var logger = require('morgan');
 	var favicon = require('serve-favicon');
 	var bodyParser = require('body-parser');
-
+	var mysql = require('./config/db.js');
 	var express = require('express');
 	var app = express();
 
@@ -14,17 +14,7 @@ module.exports = function(port) {
 	app.use(bodyParser.urlencoded({'extended':'false'}));
 	app.use(express.static(path.join(__dirname, 'dist')));
 
-	var mysql = require('mysql');
-	var connection = mysql.createConnection({
-		host     : 'localhost',
-		user     : 'root',
-		password : '',
-		database : 'cers'
-	});
-
-	connection.connect();
-
-	require('./routes.js')(express, app, connection);
+	require('./config/routes.js')(express, app, mysql);
 
 	return app;
 };

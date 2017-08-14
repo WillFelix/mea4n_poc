@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
-import { ChatService } from '../chat.service';
+import { ChatService } from './chat.service';
 import * as io from "socket.io-client";
 
 @Component({

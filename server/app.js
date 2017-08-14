@@ -14,7 +14,17 @@ module.exports = function(port) {
 	app.use(bodyParser.urlencoded({'extended':'false'}));
 	app.use(express.static(path.join(__dirname, 'dist')));
 
-	require('./routes.js')(express, app);
+	var mysql = require('mysql');
+	var connection = mysql.createConnection({
+		host     : 'localhost',
+		user     : 'root',
+		password : '',
+		database : 'cers'
+	});
+
+	connection.connect();
+
+	require('./routes.js')(express, app, connection);
 
 	return app;
 };

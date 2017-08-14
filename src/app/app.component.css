@@ -111,6 +111,7 @@ figure {
     }
 }
 .dt {
+	width: 100%;
     display: table;
 }
 .dt .dtc {
@@ -234,10 +235,9 @@ figure {
 }
 #fh5co-footer {
     position: absolute;
-    bottom: 20px;
-    left: 70px;
-    right: 70px;
-    padding-top: 50px;
+    bottom: 0px;
+    right: 0px;
+    width: 100%;
 }
 @media screen and (max-width: 768px) {
     #fh5co-footer {
@@ -247,11 +247,11 @@ figure {
     }
 }
 #fh5co-footer .fh5co-copyright {
-    text-align: right;
+    text-align: center;
 }
 @media screen and (max-width: 992px) {
     #fh5co-footer .fh5co-copyright {
-        text-align: left;
+        text-align: center;
     }
 }
 #fh5co-footer .fh5co-copyright p {

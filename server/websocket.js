@@ -7,7 +7,7 @@ module.exports = function(app) {
 	io.on('connection', function (socket) {
 
 	    socket.on('new-buy-server', function (data) {
-	        io.emit('new-buy-client', { price: data });
+	        io.emit('new-buy-client', data);
 	    });
 
 	});

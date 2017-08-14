@@ -10,7 +10,8 @@ import { ChatComponent } from './chat/chat.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CersComponent } from './cers/cers.component';
 
-import { ChatService } from './chat.service';
+import { ChatService } from './chat/chat.service';
+import { CersService } from './cers/cers.service';
 
 const ROUTES = [
   { path: '', redirectTo: 'app', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const ROUTES = [
   ],
   providers: [
     ChatService,
+    CersService,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]

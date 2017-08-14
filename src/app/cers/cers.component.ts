@@ -10,17 +10,15 @@ import * as alertify from "alertifyjs";
 })
 export class CersComponent implements OnInit {
 
-	COUNT: 0.0;
 	price: any;
-	products: any;
 	orders: any;
+	subscriptions: any;
 	socket = io('http://localhost:4000');
 
 	constructor(private cersService : CersService) { }
 
 	ngOnInit() {
 		this.price = 0.0;
-		this.COUNT = 0.0;
 		this.orders = {
 			paid: { count: 0, sum: 0 },
 			waiting: { count: 0, sum: 0 },
@@ -28,7 +26,6 @@ export class CersComponent implements OnInit {
 		};
 
 		this.socket.on('new-buy-client', function (data) {
-			this.COUNT += 100.0;
 			this.getTotalBilling();
 			this.getPaidOrdersAmount();
 
@@ -47,7 +44,7 @@ export class CersComponent implements OnInit {
 
 	getTotalBilling() {
 		this.cersService.getTotalBilling().then((res) => {
-			this.price = this.toCurrency( parseFloat(res['price']) + this.COUNT );
+			this.price = this.toCurrency( res['price'] );
 		}, (err) => {
 			console.log(err);
 		});
@@ -65,7 +62,7 @@ export class CersComponent implements OnInit {
 
 	getTotalSubscriptions() {
 		this.cersService.getPaidOrdersAmount().then((res) => {
-			this.products = res['amount'];
+			this.subscriptions = res['count'];
 		}, (err) => {
 			console.log(err);
 		});

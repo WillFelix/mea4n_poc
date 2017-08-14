@@ -10,6 +10,7 @@ import * as alertify from "alertifyjs";
 })
 export class CersComponent implements OnInit {
 
+	COUNT: 0.0;
 	price: any;
 	products: any;
 	orders: any;
@@ -19,9 +20,15 @@ export class CersComponent implements OnInit {
 
 	ngOnInit() {
 		this.price = 0.0;
-		this.products = 0;
+		this.COUNT = 0.0;
+		this.orders = {
+			paid: { count: 0, sum: 0 },
+			waiting: { count: 0, sum: 0 },
+			cancelled: { count: 0, sum: 0 }
+		};
 
 		this.socket.on('new-buy-client', function (data) {
+			this.COUNT += 100.0;
 			this.getTotalBilling();
 			this.getPaidOrdersAmount();
 
@@ -40,7 +47,7 @@ export class CersComponent implements OnInit {
 
 	getTotalBilling() {
 		this.cersService.getTotalBilling().then((res) => {
-			this.price = res['price'];
+			this.price = this.toCurrency( parseFloat(res['price']) + this.COUNT );
 		}, (err) => {
 			console.log(err);
 		});
@@ -48,10 +55,9 @@ export class CersComponent implements OnInit {
 
 	getPaidOrdersAmount() {
 		this.cersService.getPaidOrdersAmount().then((res) => {
-			this.orders = {};
-			this.orders.paid = { count: res['count_paid'], sum: res['paid'] };
-			this.orders.waiting = { count: res['count_waiting'], sum: res['waiting'] };
-			this.orders.cancelled = { count: res['count_cancelled'], sum: res['cancelled'] };
+			this.orders.paid = { count: this.formatNumber(res['count_paid']), sum: this.toCurrency(res['paid']) };
+			this.orders.waiting = { count: this.formatNumber(res['count_waiting']), sum: this.toCurrency(res['waiting']) };
+			this.orders.cancelled = { count: this.formatNumber(res['count_cancelled']), sum: this.toCurrency(res['cancelled']) };
 		}, (err) => {
 			console.log(err);
 		});
@@ -72,9 +78,8 @@ export class CersComponent implements OnInit {
 	};
 
 	formatNumber(number) {
-		return parseInt(number)
-					.toFixed(0)
-					.replace(/(\d)(?=(\d{3})+\.)/g, '$1.');
+		var result = parseInt(number).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1.');
+		return result.substr(0, result.length - 3);
 	};
 
 }

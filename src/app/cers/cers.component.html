@@ -15,19 +15,19 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="fh5co-intro animate-box">
-						<h3>{{products}}</h3>
+						<h3>{{orders.paid.count}}</h3>
 						<p>Quantidade de pedidos pagos.</p>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="fh5co-intro animate-box">
-						<h3>{{products}}</h3>
+						<h3>{{formatNumber(orders.waiting.count)}}</h3>
 						<p>Pedidos com status 'Aguardando Pagamento'.</p>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="fh5co-intro animate-box">
-						<h3>{{products}}</h3>
+						<h3>{{orders.cancelled.count}}</h3>
 						<p>Quantidade de pedidos cancelados.</p>
 					</div>
 				</div>
@@ -36,20 +36,20 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="fh5co-intro animate-box">
-						<h3>R$ {{products}}</h3>
-						<p>Quantidade de pedidos pagos.</p>
+						<h3>R$ {{orders.paid.sum}}</h3>
+						<p>Pedidos pagos.</p>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="fh5co-intro animate-box">
-						<h3>R$ {{products}}</h3>
+						<h3>R$ {{orders.waiting.sum}}</h3>
 						<p>Pedidos com status 'Aguardando Pagamento'.</p>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="fh5co-intro animate-box">
-						<h3>R$ {{products}}</h3>
-						<p>Quantidade de pedidos cancelados.</p>
+						<h3>R$ {{orders.cancelled.sum}}</h3>
+						<p>Pedidos cancelados.</p>
 					</div>
 				</div>
 			</div>

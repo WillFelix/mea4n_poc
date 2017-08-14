@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 h3 {
-	font-size: 30px;
+	font-size: 20px !important;
 	font-weight: 800 !important;
 }

@@ -18,7 +18,7 @@ module.exports = function(express, mysql, socket) {
 		});
 	});
 
-	router.get('/profit-amount', function(req, res, next) {
+	router.get('/profit', function(req, res, next) {
 		let query = `
 			SELECT
 			COUNT(CASE WHEN status in ('PAID', 'AVAILABLE') THEN op.item_price ELSE 0 END) AS count_paid,
@@ -37,6 +37,34 @@ module.exports = function(express, mysql, socket) {
 			if (rows) {
 				rows = rows[0];
 			}
+
+			res.json(rows);
+		});
+	});
+
+	router.get('/profit-per-month', function(req, res, next) {
+		let query = `
+		SELECT
+			MONTH(o.created_at) - 1 as month,
+			count(*) as count_total,
+			COUNT(CASE WHEN status in ('PAID', 'AVAILABLE') THEN o.id END) AS count_paid,
+			COUNT(CASE WHEN status = 'WAITING_PAYMENT' THEN o.id END) AS count_waiting,
+			COUNT(CASE WHEN status = 'CANCELLED' THEN o.id END) AS count_cancelled,
+
+			SUM(o.id) as total,
+			SUM(CASE WHEN status in ('PAID', 'AVAILABLE') THEN op.item_price END) AS paid,
+			SUM(CASE WHEN status = 'WAITING_PAYMENT' THEN op.item_price END) AS waiting,
+			SUM(CASE WHEN status = 'CANCELLED' THEN op.item_price END) AS cancelled
+		FROM
+			orders o
+			inner join orders_products op on op.orders_id = o.id
+		WHERE
+			YEAR(created_at) = YEAR(now())
+		GROUP BY
+			MONTH(created_at);
+		`;
+		mysql.query(query, function(err, rows, fields) {
+			if (err) throw err;
 
 			res.json(rows);
 		});

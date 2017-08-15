@@ -1,9 +1,8 @@
-module.exports = function(port) {
+module.exports = function(port, mysql) {
 	var path = require('path');
 	var logger = require('morgan');
 	var favicon = require('serve-favicon');
 	var bodyParser = require('body-parser');
-	var mysql = require('./config/db.js');
 	var express = require('express');
 	var app = express();
 

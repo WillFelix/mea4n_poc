@@ -19,9 +19,21 @@ export class CersService {
 		});
 	}
 
-	getPaidOrdersAmount() {
+	getProfit() {
 		return new Promise((resolve, reject) => {
-			this.http.get('http://127.0.0.1:3000/api/cers/profit-amount')
+			this.http.get('http://127.0.0.1:3000/api/cers/profit')
+			.map(res => res.json())
+			.subscribe(res => {
+				resolve(res);
+			}, (err) => {
+				reject(err);
+			});
+		});
+	}
+
+	getProfitPerMonth() {
+		return new Promise((resolve, reject) => {
+			this.http.get('http://127.0.0.1:3000/api/cers/profit-per-month')
 			.map(res => res.json())
 			.subscribe(res => {
 				resolve(res);

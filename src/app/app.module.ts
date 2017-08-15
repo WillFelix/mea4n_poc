@@ -4,36 +4,36 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { ChartModule } from 'angular-highcharts';
 
 import { AppComponent } from './app.component';
-import { ChatComponent } from './chat/chat.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CersComponent } from './cers/cers.component';
+import { OrderComponent } from './cers/order/order.component';
 
-import { ChatService } from './chat/chat.service';
 import { CersService } from './cers/cers.service';
 
+
 const ROUTES = [
-  { path: '', redirectTo: 'app', pathMatch: 'full' },
-  { path: 'app', component: AppComponent },
-  { path: 'chats', component: ChatComponent }
+  //{ path: '', redirectTo: 'app', pathMatch: 'full' },
+  { path: '', component: AppComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChatComponent,
     SidebarComponent,
+    OrderComponent,
     CersComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    ChartModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
-    ChatService,
     CersService,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],

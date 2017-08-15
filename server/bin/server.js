@@ -1,7 +1,8 @@
 var port = normalizePort(process.env.PORT || '3000');
 
 var http = require('http');
-var app = require('../app')(port);
+var mysql = require('../config/db.js');
+var app = require('../app')(port, mysql);
 var server = http.createServer(app);
 var debug = require('debug')('mean-app:server');
 
@@ -9,6 +10,15 @@ var debug = require('debug')('mean-app:server');
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+process.on('SIGTERM', function () {
+	console.log('Bye... :)');
+
+	mysql.destroy();
+  	server.close(function () {
+		process.exit(0);
+	});
+});
 
 
 /**

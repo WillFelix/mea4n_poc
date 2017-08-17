@@ -13,6 +13,7 @@ export class OrderComponent implements OnInit {
 
 	firstMonth: number;
 	lastMonth: number;
+	loading: boolean;
 	chart: any;
 	months: any;
 	price: any;
@@ -22,6 +23,7 @@ export class OrderComponent implements OnInit {
 	constructor(private cersService : CersService) { }
 
 	ngOnInit() {
+		this.loading = true;
 		this.firstMonth = 12;
 		this.lastMonth = 0;
 		this.months = [];
@@ -89,6 +91,7 @@ export class OrderComponent implements OnInit {
 			});
 
 			this.initChart();
+			this.loading = false;
 		}, (err) => {
 			console.log(err);
 		});

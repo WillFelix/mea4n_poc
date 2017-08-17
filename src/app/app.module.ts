@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ChartModule } from 'angular-highcharts';
+import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -31,6 +32,14 @@ const ROUTES = [
     FormsModule,
     HttpModule,
     ChartModule,
+    LoadingModule.forRoot({
+      animationType: ANIMATION_TYPES.wanderingCubes,
+      backdropBackgroundColour: 'rgba(255, 255, 255, 1)',
+      backdropBorderRadius: '4px',
+      primaryColour: '#0000ff',
+      secondaryColour: '#ff0000',
+      tertiaryColour: '#00ff00'
+    }),
     RouterModule.forRoot(ROUTES)
   ],
   providers: [

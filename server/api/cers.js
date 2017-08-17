@@ -6,7 +6,7 @@ module.exports = function(express, mysql, socket) {
 			select sum(op.item_price) as price
 			from orders o
 			inner join orders_products op on op.orders_id = o.id
-			where o.status in ('PAID', 'AVAILABLE');
+			where o.status in ('PAID', 'AVAILABLE') and YEAR(o.created_at) = YEAR(now());
 		`;
 		mysql.query(query, function(err, rows, fields) {
 			if (err) throw err;
@@ -30,7 +30,8 @@ module.exports = function(express, mysql, socket) {
 			COUNT(CASE WHEN status = 'CANCELLED' THEN op.item_price ELSE 0 END) AS count_cancelled,
 			SUM(CASE WHEN status = 'CANCELLED' THEN op.item_price ELSE 0 END) AS cancelled
 			FROM orders o
-			inner join orders_products op on op.orders_id = o.id;
+			inner join orders_products op on op.orders_id = o.id
+			WHERE YEAR(o.created_at) = YEAR(now());
 		`;
 		mysql.query(query, function(err, rows, fields) {
 			if (err) throw err;

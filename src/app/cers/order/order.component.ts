@@ -15,15 +15,19 @@ export class OrderComponent implements OnInit {
 	lastMonth: number;
 	loading: boolean;
 	chart: any;
+	isNotify: boolean;
 	months: any;
 	price: any;
+	currentYear: number;
 	orders: any;
 	socket = io('http://localhost:4000');
 
 	constructor(private cersService : CersService) { }
 
 	ngOnInit() {
+		this.isNotify = false;
 		this.loading = true;
+		this.currentYear = (new Date().getFullYear());
 		this.firstMonth = 12;
 		this.lastMonth = 0;
 		this.months = [];
@@ -39,7 +43,11 @@ export class OrderComponent implements OnInit {
 			this.getProfit();
 			this.getProfitPerMonth();
 
-			alertify.success('Nova compra');
+			alert('asd');
+
+			if (this.isNotify) {
+				alertify.success('Nova compra');
+			}
 		}.bind(this));
 
 		this.getTotalBilling();
@@ -138,6 +146,10 @@ export class OrderComponent implements OnInit {
 			}]
 		});
 	}
+
+	toggleNotifications() {
+		this.isNotify = !this.isNotify;
+	};
 
 	toCurrency(number) {
 		return parseFloat(number)

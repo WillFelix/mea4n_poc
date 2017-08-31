@@ -8,12 +8,12 @@ import { ChartModule } from 'angular-highcharts';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { CersComponent } from './cers/cers.component';
 import { OrderComponent } from './cers/order/order.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { MatriculationComponent } from './cers/matriculation/matriculation.component';
 
 import { CersService } from './cers/cers.service';
-
 
 const ROUTES = [
   //{ path: '', redirectTo: 'app', pathMatch: 'full' },
@@ -25,7 +25,8 @@ const ROUTES = [
     AppComponent,
     SidebarComponent,
     OrderComponent,
-    CersComponent
+    CersComponent,
+    MatriculationComponent
   ],
   imports: [
     BrowserModule,

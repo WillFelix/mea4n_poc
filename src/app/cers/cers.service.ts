@@ -7,6 +7,9 @@ export class CersService {
 
 	constructor(private http: Http) { }
 
+	/**
+	* ORDERS
+	*/
 	getTotalBilling() {
 		return new Promise((resolve, reject) => {
 			this.http.get('http://127.0.0.1:3000/api/cers/billing')
@@ -43,4 +46,31 @@ export class CersService {
 		});
 	}
 
+	/**
+	* MATRICULATIONS
+	*/
+
+	getActivesMatriculations() {
+		return new Promise((resolve, reject) => {
+			this.http.get('http://127.0.0.1:3000/api/cers/actives-matriculations')
+			.map(res => res.json())
+			.subscribe(res => {
+				resolve(res);
+			}, (err) => {
+				reject(err);
+			});
+		});
+	}
+
+	getMatriculationsOfTheMostSoldCourses() {
+		return new Promise((resolve, reject) => {
+			this.http.get('http://127.0.0.1:3000/api/cers/most-solds')
+			.map(res => res.json())
+			.subscribe(res => {
+				resolve(res);
+			}, (err) => {
+				reject(err);
+			});
+		});
+	}
 }

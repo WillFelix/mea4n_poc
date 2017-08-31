@@ -71,6 +71,53 @@ module.exports = function(express, mysql, socket) {
 		});
 	});
 
+	router.get('/actives-matriculations', function(req, res, next) {
+		let query = `
+		select count(distinct(student_id)) as count
+		from matriculations
+		where expiration_at >= now();
+		`;
+		mysql.query(query, function(err, rows, fields) {
+			if (err) throw err;
+			if (rows) {
+				rows = rows[0];
+			}
+
+			res.json(rows);
+		});
+	});
+
+	router.get('/most-solds', function(req, res, next) {
+		let query = `
+		SELECT
+			p.id as id,
+			p.name as name,
+			(select count(m.id) from matriculations m where m.product_id = p.id) as count_matriculations
+		FROM
+			products p
+			INNER JOIN product_domains pd on pd.product_id = p.id
+			INNER JOIN domains d on pd.domain_id = d.id
+			INNER JOIN orders_products op on op.products_id  = p.id
+			INNER JOIN orders o on op.orders_id = o.id
+			INNER JOIN matriculations m on m.product_id = p.id and m.order_id = o.id
+		WHERE
+			o.created_at >= DATE_SUB(NOW(), INTERVAL 15 day)
+			AND p.is_enabled IS TRUE
+			AND o.status in ('PAID', 'AVAILABLE', 'MANUALLY_RELEASED', 'AUTOMATICALLY_RELEASED')
+			AND p.sale_ended_at > NOW()
+			AND p.DTYPE = 'COURSE'
+			AND d.name = 'CERS'
+		GROUP BY p.id
+		ORDER BY COUNT(o.id) DESC
+		LIMIT 10;
+		`;
+		mysql.query(query, function(err, rows, fields) {
+			if (err) throw err;
+
+			res.json({ courses: rows });
+		});
+	});
+
 	router.get("/post", function(req, res) {
 		socket.emit("new-buy-client", { price: "10200.58", products: 134 });
 		res.json();

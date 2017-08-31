@@ -1,0 +1,46 @@
+<ngx-loading [show]="loading"></ngx-loading>
+
+<div class="dt js-dt">
+    <div class="dtc js-dtc">
+        <div class="simply-countdown-one animate-box" data-animate-effect="fadeInUp"></div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="fh5co-intro animate-box" style="text-align:center;">
+                    <h2>Matrículas</h2>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3 style="font-weight: 100 !important;">Quantidade de matrículas ativas hoje:</h3>
+                <h1>{{count_actives_matriculations}}</h1>
+
+                <hr>
+            </div>
+            <div class="col-md-12">
+                <h3 style="font-weight: 100 !important;">Quantidade de matrículas nos 10 cursos + vendidos:</h3>
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Curso</th>
+                            <th width=100>Qtd. Mat.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let course of courses">
+                            <td>{{ course.name }}</td>
+                            <td>{{ formatNumber(course.count_matriculations) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <hr>
+            </div>
+        </div>
+
+    </div>
+</div>

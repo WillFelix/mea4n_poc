@@ -6,12 +6,14 @@
 
 		<div class="row">
 			<div class="col-md-12">
-				<div class="fh5co-intro animate-box">
-					<h2>R$ {{price}}</h2>
-					<p>Faturamento atual, baseado nos pedidos aprovados vindo do Pagar.me.</p>
+				<div class="fh5co-intro animate-box" style="text-align:center;">
+					<h2>Pedidos</h2>
+					<p>Todos os cálculos são baseados no ano de {{currentYear}}</p>
 				</div>
 			</div>
 		</div>
+
+		<button (click)="toggleNotifications()">Toggle Notifications</button>
 
 		<div>
 			<div class="row">

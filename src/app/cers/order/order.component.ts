@@ -43,8 +43,6 @@ export class OrderComponent implements OnInit {
 			this.getProfit();
 			this.getProfitPerMonth();
 
-			alert('asd');
-
 			if (this.isNotify) {
 				alertify.success('Nova compra');
 			}

@@ -1,10 +1,20 @@
 <aside id="fh5co-aside" role="sidebar" class="text-center" style="background-image: url(assets/images/img_bg_1_gradient.jpg);">
 	<h1 id="fh5co-logo">KONTINU</h1>
-	<hr>
-	<img src="https://cers.com.br/assets/images/intro/logo.svg" alt="CERS">
-
+    <div *ngIf="title() != null">
+        <hr>
+    	<img src="{{logo()}}" alt="{{title()}}">
+    </div>
 
 	<button (click)="toggleNotifications()" class="btn btn-warning">Toggle Notifications</button>
+
+    <ul>
+        <li><a routerLink="/">Home</a></li>
+        <li *ngFor="let menu of menus()">
+            <a routerLink="/{{menu.link}}" routerLinkActive="active">
+                {{menu.title}}
+            </a>
+        </li>
+    </ul>
 
     <div id="fh5co-footer">
         <div class="row">

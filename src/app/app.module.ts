@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ChartModule } from 'angular-highcharts';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
@@ -12,21 +12,27 @@ import { CersComponent } from './cers/cers.component';
 import { OrderComponent } from './cers/order/order.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatriculationComponent } from './cers/matriculation/matriculation.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { CersService } from './cers/cers.service';
+import { SidebarService } from './sidebar/sidebar.service';
 
-const ROUTES = [
-  //{ path: '', redirectTo: 'app', pathMatch: 'full' },
-  { path: '', component: AppComponent }
+const appRoutes: Routes = [
+  { path: 'cers', component: CersComponent },
+  { path: 'cers/orders', component: OrderComponent },
+  { path: 'cers/matriculations', component: MatriculationComponent },
+  { path: '', redirectTo: 'cers', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
-    OrderComponent,
     CersComponent,
-    MatriculationComponent
+    OrderComponent,
+    MatriculationComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -41,10 +47,11 @@ const ROUTES = [
       secondaryColour: '#ff0000',
       tertiaryColour: '#00ff00'
     }),
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     CersService,
+    SidebarService,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]

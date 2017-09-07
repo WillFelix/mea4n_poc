@@ -3,19 +3,23 @@
     <div *ngIf="title() != null">
         <hr>
     	<img src="{{logo()}}" alt="{{title()}}">
+        <hr>
     </div>
 
-	<button (click)="toggleNotifications()" class="btn btn-warning">Toggle Notifications</button>
-
+    <!-- MENU -->
     <ul>
-        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/cers" routerLinkActive="btn btn-success" [routerLinkActiveOptions]="{ exact: true }" style="color: white;">Home</a></li>
         <li *ngFor="let menu of menus()">
-            <a routerLink="/{{menu.link}}" routerLinkActive="active">
+            <a routerLink="/{{menu.link}}" routerLinkActive="btn btn-success" [routerLinkActiveOptions]="{ exact: true }" style="color: white;">
                 {{menu.title}}
             </a>
         </li>
+        <li>
+            <button (click)="toggleNotifications()" class="btn btn-danger">Toggle Notifications</button>
+        </li>
     </ul>
 
+    <!-- FOOTER -->
     <div id="fh5co-footer">
         <div class="row">
             <div class="col-md-12 fh5co-copyright">

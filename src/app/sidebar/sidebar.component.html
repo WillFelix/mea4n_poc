@@ -15,7 +15,7 @@
             </a>
         </li>
         <li>
-            <button (click)="toggleNotifications()" class="btn btn-danger">Toggle Notifications</button>
+            <button (click)="toggleNotifications()" class="btn" [ngClass]="{ 'btn-danger': !bool, 'btn-info': bool }">Toggle Notifications</button>
         </li>
     </ul>
 

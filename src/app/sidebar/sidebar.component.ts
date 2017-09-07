@@ -2,32 +2,35 @@ import { Component, OnInit } from '@angular/core';
 import { SidebarService } from './sidebar.service';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['../app.component.css', './sidebar.component.css']
+	selector: 'app-sidebar',
+	templateUrl: './sidebar.component.html',
+	styleUrls: ['../app.component.css', './sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(private service : SidebarService) { }
+	bool: boolean;
 
-  ngOnInit() {
+	constructor(private service : SidebarService) { }
 
-  }
+	ngOnInit() {
 
-  toggleNotifications() {
-	  this.service.isNotify = !this.service.isNotify;
-  }
+	}
 
-  title() {
-    return this.service.title;
-  }
+	toggleNotifications() {
+		this.bool = this.service.isNotify;
+		this.service.isNotify = !this.bool;
+	}
 
-  logo() {
-    return this.service.logo;
-  }
+	title() {
+		return this.service.title;
+	}
 
-  menus() {
-    return this.service.menus;
-  }
+	logo() {
+		return this.service.logo;
+	}
+
+	menus() {
+		return this.service.menus;
+	}
 
 }

@@ -1,6 +1,7 @@
 import { Chart } from 'angular-highcharts';
 import { Component, OnInit } from '@angular/core';
 import { CersService } from '../cers.service';
+import { SidebarService } from '../../sidebar/sidebar.service';
 import * as io from "socket.io-client";
 import * as alertify from "alertifyjs";
 
@@ -22,10 +23,9 @@ export class OrderComponent implements OnInit {
 	orders: any;
 	socket = io('http://localhost:4000');
 
-	constructor(private cersService : CersService) { }
+	constructor(private cersService : CersService, private sidebarService : SidebarService) { }
 
 	ngOnInit() {
-		this.isNotify = false;
 		this.loading = true;
 		this.currentYear = (new Date().getFullYear());
 		this.firstMonth = 12;
@@ -43,7 +43,7 @@ export class OrderComponent implements OnInit {
 			this.getProfit();
 			this.getProfitPerMonth();
 
-			if (this.isNotify) {
+			if (this.sidebarService.isNotify) {
 				alertify.success('Nova compra');
 			}
 		}.bind(this));

@@ -11,11 +11,11 @@ export class SidebarComponent implements OnInit {
   constructor(private service : SidebarService) { }
 
   ngOnInit() {
-    
+
   }
 
   toggleNotifications() {
-
+	  this.service.isNotify = !this.service.isNotify;
   }
 
   title() {

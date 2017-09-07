@@ -5,9 +5,11 @@ export class SidebarService {
 
   title: string;
   logo: string;
+  isNotify: boolean;
   menus: Array<object>;
 
   constructor() {
+    this.isNotify = false;
     this.title = "CERS";
     this.logo = "https://cers.com.br/assets/images/intro/logo.svg";
     this.menus = [

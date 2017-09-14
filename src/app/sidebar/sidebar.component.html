@@ -1,5 +1,8 @@
 <aside id="fh5co-aside" role="sidebar" class="text-center" style="background-image: url(assets/images/img_bg_1_gradient.jpg);">
-	<h1 id="fh5co-logo">KONTINU</h1>
+    <div class="title" style="display: flex; flex-directions: row;justify-content: center; align-items: center;">
+        <h1 id="fh5co-logo">KONTINU</h1>
+        &nbsp;&nbsp;<span class="btn glyphicon" (click)="toggleNotifications()" [ngClass]="{ 'btn-danger glyphicon-volume-off': !bool, 'btn-info glyphicon-volume-up': bool }"></span>
+    </div>
     <div *ngIf="title() != null">
         <hr>
     	<img src="{{logo()}}" alt="{{title()}}">
@@ -13,9 +16,6 @@
             <a routerLink="/{{menu.link}}" routerLinkActive="btn btn-success" [routerLinkActiveOptions]="{ exact: true }" style="color: white;">
                 {{menu.title}}
             </a>
-        </li>
-        <li>
-            <button (click)="toggleNotifications()" class="btn" [ngClass]="{ 'btn-danger': !bool, 'btn-info': bool }">Toggle Notifications</button>
         </li>
     </ul>
 

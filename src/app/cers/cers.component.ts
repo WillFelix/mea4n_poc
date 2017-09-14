@@ -21,9 +21,5 @@ export class CersComponent implements OnInit {
       { title: "Pedidos", link: "cers/orders" }
     ];
   }
-
-  toggleNotifications() {
-
-  }
-
+  
 }

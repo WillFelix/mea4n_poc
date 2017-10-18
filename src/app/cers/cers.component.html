@@ -1,0 +1,45 @@
+<aside id="fh5co-aside" role="sidebar" class="text-center" style="background-image: url(assets/images/img_bg_1_gradient.jpg);">
+    <div class="title" style="display: flex; flex-directions: row;justify-content: center; align-items: center;">
+        <h1 id="fh5co-logo">KONTINU</h1>
+        <br/>
+		<span class="btn glyphicon" (click)="toggleNotifications()" [ngClass]="{ 'btn-danger glyphicon-volume-off': !bool, 'btn-info glyphicon-volume-up': bool }"></span>
+    </div>
+    <div>
+        <hr>
+    	<img src="https://cers.com.br/assets/images/intro/logo.svg" alt="CERS">
+        <hr>
+    </div>
+
+    <!-- MENU -->
+    <ul>
+        <li>
+            <a routerLink="/cers" routerLinkActive="btn btn-success" [routerLinkActiveOptions]="{ exact: true }" style="color: white;">
+                Home
+            </a>
+        </li>
+		<li>
+            <a routerLink="/cers/matriculations" routerLinkActive="btn btn-success" [routerLinkActiveOptions]="{ exact: true }" style="color: white;">
+                Matrículas
+            </a>
+        </li>
+        <li>
+            <a routerLink="/cers/orders" routerLinkActive="btn btn-success" [routerLinkActiveOptions]="{ exact: true }" style="color: white;">
+                Pedidos
+            </a>
+        </li>
+        <li>
+            <a routerLink="/cers/logs" routerLinkActive="btn btn-success" [routerLinkActiveOptions]="{ exact: true }" style="color: white;">
+                LOGS
+            </a>
+        </li>
+    </ul>
+
+    <!-- FOOTER -->
+    <div id="fh5co-footer">
+        <div class="row">
+            <div class="col-md-12 fh5co-copyright">
+                <p>Developed by <a href="http://willfelix.github.io/" target="_blank">Will Felix</a></p>
+            </div>
+        </div>
+    </div>
+</aside>

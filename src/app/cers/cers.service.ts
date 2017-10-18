@@ -5,7 +5,11 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class CersService {
 
-	constructor(private http: Http) { }
+	isNotify: boolean;
+
+	constructor(private http: Http) {
+		this.isNotify = false;
+	}
 
 	/**
 	* ORDERS

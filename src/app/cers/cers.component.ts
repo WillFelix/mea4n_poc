@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarService } from '../sidebar/sidebar.service';
+import { CersService } from '../cers/cers.service';
 
 @Component({
-  selector: 'app-cers',
-  templateUrl: './cers.component.html',
-  styleUrls: ['../app.component.css']
+	selector: 'app-cers',
+	templateUrl: './cers.component.html',
+	styleUrls: ['../app.component.css', './cers.component.css']
 })
 export class CersComponent implements OnInit {
 
-  title: string;
-  logo: string;
+	title: string;
+	logo: string;
+	bool: boolean;
 
-  constructor(private sidebar: SidebarService) { }
+	constructor(private service: CersService) { }
 
-  ngOnInit() {
-    this.sidebar.title = "CERS";
-    this.sidebar.logo = "https://cers.com.br/assets/images/intro/logo.svg";
-    this.sidebar.menus = [
-      { title: "Matriculas", link: "cers/matriculations" },
-      { title: "Pedidos", link: "cers/orders" }
-    ];
-  }
-  
+	ngOnInit() {}
+
+	toggleNotifications() {
+		this.bool = this.service.isNotify;
+		this.service.isNotify = !this.bool;
+	}
+
 }

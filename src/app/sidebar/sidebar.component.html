@@ -11,10 +11,24 @@
 
     <!-- MENU -->
     <ul>
-        <li><a routerLink="/cers" routerLinkActive="btn btn-success" [routerLinkActiveOptions]="{ exact: true }" style="color: white;">Home</a></li>
-        <li *ngFor="let menu of menus()">
-            <a routerLink="/{{menu.link}}" routerLinkActive="btn btn-success" [routerLinkActiveOptions]="{ exact: true }" style="color: white;">
-                {{menu.title}}
+        <li>
+            <a routerLink="/cers" routerLinkActive="btn btn-success" [routerLinkActiveOptions]="{ exact: true }" style="color: white;">
+                Home
+            </a>
+        </li>
+		<li>
+            <a routerLink="/cers/matriculations" routerLinkActive="btn btn-success" [routerLinkActiveOptions]="{ exact: true }" style="color: white;">
+                Matrículas
+            </a>
+        </li>
+        <li>
+            <a routerLink="/cers/orders" routerLinkActive="btn btn-success" [routerLinkActiveOptions]="{ exact: true }" style="color: white;">
+                Pedidos
+            </a>
+        </li>
+        <li>
+            <a routerLink="/cers/logs" routerLinkActive="btn btn-success" [routerLinkActiveOptions]="{ exact: true }" style="color: white;">
+                LOGS
             </a>
         </li>
     </ul>

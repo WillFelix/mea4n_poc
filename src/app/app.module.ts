@@ -12,6 +12,7 @@ import { CersComponent } from './cers/cers.component';
 import { OrderComponent } from './cers/order/order.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatriculationComponent } from './cers/matriculation/matriculation.component';
+import { LogsComponent } from './cers/logs/logs.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { CersService } from './cers/cers.service';
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
   { path: 'cers', component: CersComponent },
   { path: 'cers/orders', component: OrderComponent },
   { path: 'cers/matriculations', component: MatriculationComponent },
+  { path: 'cers/logs', component: LogsComponent },
   { path: '', redirectTo: 'cers', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -32,6 +34,7 @@ const appRoutes: Routes = [
     CersComponent,
     OrderComponent,
     MatriculationComponent,
+    LogsComponent,
     PageNotFoundComponent
   ],
   imports: [

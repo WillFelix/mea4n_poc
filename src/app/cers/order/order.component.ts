@@ -1,7 +1,6 @@
 import { Chart } from 'angular-highcharts';
 import { Component, OnInit } from '@angular/core';
 import { CersService } from '../cers.service';
-import { SidebarService } from '../../sidebar/sidebar.service';
 import * as io from "socket.io-client";
 import * as alertify from "alertifyjs";
 
@@ -23,7 +22,7 @@ export class OrderComponent implements OnInit {
 	orders: any;
 	socket = io('http://localhost:4000');
 
-	constructor(private cersService : CersService, private sidebarService : SidebarService) { }
+	constructor(private service : CersService) { }
 
 	ngOnInit() {
 		this.loading = true;
@@ -54,7 +53,7 @@ export class OrderComponent implements OnInit {
 	}
 
 	getTotalBilling() {
-		this.cersService.getTotalBilling().then((res) => {
+		this.service.getTotalBilling().then((res) => {
 			this.price = this.toCurrency( res['price'] );
 		}, (err) => {
 			console.log(err);
@@ -62,7 +61,7 @@ export class OrderComponent implements OnInit {
 	}
 
 	getProfit() {
-		this.cersService.getProfit().then((res) => {
+		this.service.getProfit().then((res) => {
 			this.orders = {
 				paid: { count: this.formatNumber( res['count_paid'] ), sum: this.toCurrency( res['paid'] ) },
 				waiting: { count: this.formatNumber( res['count_waiting'] ), sum: this.toCurrency( res['waiting'] ) },
@@ -74,7 +73,7 @@ export class OrderComponent implements OnInit {
 	}
 
 	getProfitPerMonth() {
-		this.cersService.getProfitPerMonth().then((res) => {
+		this.service.getProfitPerMonth().then((res) => {
 			let arr = [];
 			arr = arr.concat(res);
 

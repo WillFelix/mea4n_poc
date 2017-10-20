@@ -10,19 +10,18 @@ import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 import { AppComponent } from './app.component';
 import { CersComponent } from './cers/cers.component';
 import { OrderComponent } from './cers/order/order.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatriculationComponent } from './cers/matriculation/matriculation.component';
 import { LogsComponent } from './cers/logs/logs.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { CersService } from './cers/cers.service';
-import { SidebarService } from './sidebar/sidebar.service';
 
 const appRoutes: Routes = [
   { path: 'cers', component: CersComponent },
   { path: 'cers/orders', component: OrderComponent },
   { path: 'cers/matriculations', component: MatriculationComponent },
   { path: 'cers/logs', component: LogsComponent },
+  { path: 'cers/log/:id', component: LogsComponent },
   { path: '', redirectTo: 'cers', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -30,7 +29,6 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
     CersComponent,
     OrderComponent,
     MatriculationComponent,
@@ -54,7 +52,6 @@ const appRoutes: Routes = [
   ],
   providers: [
     CersService,
-    SidebarService,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
